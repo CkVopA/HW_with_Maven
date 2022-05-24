@@ -1,37 +1,48 @@
 package gb.hw.skvortsov.level3.lesson6;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 
 public class HomeWork_3p6 {
+    public static final Logger log = LoggerFactory.getLogger(HomeWork_3p6.class);
+
     public static void main(String[] args) {
+
+        HomeWork_3p6 hw = new HomeWork_3p6();
+
         int[] arr = {1,2,3,4,1,1};
-        System.out.println(checkBalance(arr));
-        shiftArray(arr, -2);
+        System.out.println(hw.checkBalance(arr));
+        hw.shiftArray(arr, -2);
     }
 
-    public static boolean checkBalance (int [] arr) {
+    public boolean checkBalance (int [] arr) {
         int sumOfMembers = 0;
         for (int j : arr) {
             if (sumOfMembers == sumOfArray(arr) - sumOfMembers) {
                 return true;
             } else sumOfMembers += j;
         }
+        log.info("Массив не сбалансированный!");
         return false;
     }
 
-    private static int sumOfArray (int[] arr){
+    public int sumOfArray (int[] arr){
         int sum=0;
         for (int j : arr) {
             sum += j;
         }
+        log.info("Посчитана сумма массива");
         return sum;
     }
-    public static void shiftArray (int [] ar, int n){
+
+    public  int[] shiftArray (int [] ar, int n){
         int stepShift = n;
         int xSafety;
         while (stepShift != 0) {
             if (n%ar.length == 0) {
-                System.out.println("Массив остался такого же вида");
+                log.info("Массив остался такого же вида");
                 break;
             }
             if (n>0) {
@@ -61,5 +72,6 @@ public class HomeWork_3p6 {
             }
         }
         System.out.println(Arrays.toString(ar));
+        return ar;
     }
 }
